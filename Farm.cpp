@@ -134,7 +134,6 @@ void timerCallbackFarm(TimerID timer) {
 		}
 		playSound(water);
 		showMessage(" ");
-		setTimer(gameTimer, gameTime);		//타이머 리셋
 		hideObject(waterButton);
 		setObjectImage(textMoney, "Images/숫자/없음.png");
 		hideObject(textMoney);
@@ -142,6 +141,7 @@ void timerCallbackFarm(TimerID timer) {
 		showObject(goStoreButton);
 		showObject(goBookButtoon);
 		setBook();
+		setTimer(gameTimer, gameTime);		//타이머 리셋
 	}
 }
 
