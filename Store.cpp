@@ -16,7 +16,7 @@ ObjectID moneyCell[9];	//1~8 8칸
 ObjectID dayPriceCell[9];
 extern void setLeftDay();
 extern int leftDay;
-extern int nextDayPriceList[14];
+extern int nextDayPriceList[12];
 
 extern bool moleUnlocked;
 extern bool findPotato[8];
@@ -33,7 +33,7 @@ const char* number[10]
 
 extern int waterLevel;		//현재 물뿌리개 레벨 (시작은 0)
 extern int waterType;
-extern int upgradeMoney[10];
+extern int upgradeMoney[12];
 extern const char* waterImageList[14];
 extern const char* waterStoreImageList[14];
 
@@ -170,7 +170,9 @@ void mouseCallbackStore(ObjectID object, int x, int y, MouseAction action) {
 		//날짜 추가 돈이 충분하면
 		if (money >= nextDayPriceList[waterLevel]) {
 			playSound(success);
+			money -= nextDayPriceList[waterLevel];
 			leftDay += 5;	//5일 추가
+			setMoney();
 			setLeftDay();	//farm씬의 남은 날짜 표기 다시 세팅
 			showMessage("농장 대여를 5일 더 할 수 있게 되었습니다!");
 		}

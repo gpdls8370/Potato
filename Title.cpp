@@ -24,7 +24,6 @@ void mouseCallbackTitle(ObjectID object, int x, int y, MouseAction action) {
 		endGame();
 }
 
-
 void mainTitle() {
 
 	title = createScene("감자 캐기", "Images/farm.png");

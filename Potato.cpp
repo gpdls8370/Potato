@@ -45,9 +45,12 @@ int day = 1;
 int leftDay = 5;		//남은날짜 : 처음은 5일
 float gameTime = 15.0f;
 
+int nextDayPriceList[12]		//날짜 추가 위해서 필요한 돈 == 물뿌리개 강화에 필요한 돈
+= { 300,800,2000,5000,20000,80000,200000,500000,1000000,5000000,10000000,50000000 };
+
 //n일때 다음 물뿌리개로 업그레이드 하기 위해 필요한 돈
-int upgradeMoney[14]
-= { 300,800,2000,5000,20000,80000,200000,500000,1000000,5000000,10000000,50000000,100000000,1 };
+int upgradeMoney[12]
+= { 300,800,2000,5000,20000,80000,200000,500000,1000000,5000000,10000000,50000000 };
 
 //물뿌리개 이미지 리스트
 const char* waterImageList[14]
@@ -71,6 +74,9 @@ const char* potatoImageList[8]
 int potatoMoneyList[8]
 = { 10,50,200,1000,5000,50000,500000,1 };
 
+int moleMoneyList[8]
+= { -30,-150,-600,-3000,-15000,-150000,-1500000,-1 };
+
 //감자 발견 여부 = 도감 오픈 여부
 bool findPotato[8]
 = { 0,0,0,0,0,0,0,0 };
@@ -79,8 +85,12 @@ bool openBook[8]
 
 //변경바람
 const char* potatoMoneyImageList[8]
-= { "Images/도감/물음표0.png","Images/도감/물음표1.png" ,"Images/도감/물음표2.png" ,"Images/도감/물음표3.png" ,
-"Images/도감/물음표4.png" ,"Images/도감/물음표5.png" ,"Images/도감/물음표6.png" ,"Images/도감/물음표7.png" };
+= { "Images/감자가격/평범한.png", "Images/감자가격/왕.png", "Images/감자가격/금.png", "Images/감자가격/다이아.png",
+"Images/감자가격/포카칩.png", "Images/감자가격/무지개.png", "Images/감자가격/대홍단.png", "Images/감자가격/두더지.png" };
+
+const char* moleMoneyImageList[8]
+= { "Images/두더지가격/평범한.png", "Images/두더지가격/왕.png", "Images/두더지가격/금.png", "Images/두더지가격/다이아.png",
+"Images/두더지가격/포카칩.png", "Images/두더지가격/무지개.png", "Images/두더지가격/대홍단.png", "Images/두더지가격/두더지.png" };
 
 const char* bookImageList_no[8]
 = { "Images/도감/물음표0.png","Images/도감/물음표1.png" ,"Images/도감/물음표2.png" ,"Images/도감/물음표3.png" ,
@@ -89,9 +99,6 @@ const char* bookImageList_no[8]
 const char* bookImageList_yes[8]
 = { "Images/도감/도감0.png", "Images/도감/도감1.png" ,"Images/도감/도감2.png" ,"Images/도감/도감3.png" ,
 "Images/도감/도감4.png" ,"Images/도감/도감5.png" ,"Images/도감/도감6.png" ,"Images/도감/도감7.png" };
-
-int nextDayPriceList[14]		//날짜 추가 위해서 필요한 돈 == 물뿌리개 강화에 필요한 돈
-= { 300,800,2000,5000,20000,80000,200000,500000,1000000,5000000,10000000,50000000,100000000,1 };
 
 
 ObjectID createObject(const char* name, SceneID scene, int x, int y, bool shown, float size) {
@@ -145,7 +152,6 @@ void getMoneyNum(int mon) {
 		}
 	}
 }
-
 
 void mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 	mouseCallbackTitle(object, x, y, action);

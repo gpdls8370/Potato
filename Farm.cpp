@@ -36,6 +36,7 @@ int waterType = 2;		//시작은 타입2 + 물뿌리개 업글하면 값 바꿈
 
 extern int money;
 extern int moneyNum[9];
+extern int moleMoneyList[8];
 extern const char* number[10];
 extern int random(int type);
 extern void setMoney();
@@ -43,6 +44,7 @@ extern void setDayPrice();
 extern void setBook();
 extern void getMoneyNum(int mon);
 extern const char* potatoMoneyImageList[8];
+extern const char* moleMoneyImageList[8];
 
 int count = 0;
 
@@ -131,7 +133,6 @@ void timerCallbackFarm(TimerID timer) {
 			for (int j = 0; j < 4; j++)
 				hideObject(potato[i][j]);
 		}
-		showMessage("후 오늘도 많이 캤다~!");
 		playSound(water);
 		setTimer(gameTimer, gameTime);		//타이머 리셋
 		hideObject(waterButton);
@@ -205,8 +206,11 @@ void mouseCallbackFarm(ObjectID object, int x, int y, MouseAction action) {
 				playSound(moleClick3);
 			count++;
 
-			money += potatoMoney[soilState[cell_i][cell_j]];
+			money += moleMoneyList[nowPotato[3]];
 			countMole++;
+
+			//옆에 가격 띄워줌
+			setObjectImage(textMoney, moleMoneyImageList[nowPotato[3]]);
 		}
 
 		else {	//1,2,3클릭시
@@ -225,12 +229,12 @@ void mouseCallbackFarm(ObjectID object, int x, int y, MouseAction action) {
 			else if (count % 3 == 2)
 				playSound(potatoClick3);
 			count++;
+
+			//옆에 가격 띄워줌
+			setObjectImage(textMoney, potatoMoneyImageList[nowPotato[soilState[cell_i][cell_j]]]);
 		}
 		soilState[cell_i][cell_j] = 4;		//상태: 빈칸으로
 		hideObject(potato[cell_i][cell_j]);
-
-		//옆에 가격 띄워줌
-		setObjectImage(textMoney, potatoMoneyImageList[nowPotato[soilState[cell_i][cell_j]]]);
 
 	}
 }
@@ -247,7 +251,7 @@ void mainFarm() {
 
 	textLeftDay = createObject("Images/버튼/Day.png", farm, 10, 620, true, 0.7f);
 	textDay = createObject("Images/버튼/남은대여날짜.png", farm, 820, 635, true, 0.7f);
-	textMoney = createObject("Images/버튼/Day.png", farm, 1000, 200, false, 0.7f);
+	textMoney = createObject("Images/숫자/없음.png", farm, 950, 180, false, 1.2f);
 
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
