@@ -14,7 +14,7 @@ extern ObjectID nextWater, goFarmButton1, goBackButton;
 
 SceneID farm;
 TimerID gameTimer;
-ObjectID waterButton, goStoreButton, goBookButtoon, nextDayButton, myWater;
+ObjectID waterButton, goStoreButton, goBookButtoon, nextDayButton, goEndButton;
 ObjectID textDay, textLeftDay, textMoney;
 ObjectID soil[4][4];
 ObjectID potato[4][4];	//감자3종류 or 두더지
@@ -92,7 +92,6 @@ bool isPotatoCell(ObjectID object) {
 			}
 		}
 	}
-
 	return result;
 }
 
@@ -134,8 +133,10 @@ void timerCallbackFarm(TimerID timer) {
 				hideObject(potato[i][j]);
 		}
 		playSound(water);
+		showMessage(" ");
 		setTimer(gameTimer, gameTime);		//타이머 리셋
 		hideObject(waterButton);
+		setObjectImage(textMoney, "Images/숫자/없음.png");
 		hideObject(textMoney);
 		showObject(nextDayButton);
 		showObject(goStoreButton);
@@ -163,7 +164,7 @@ void mouseCallbackFarm(ObjectID object, int x, int y, MouseAction action) {
 
 		if (moleUnlocked == false && countMole >= 100) {
 			moleUnlocked = true;
-			setObjectImage(nextWater, "Images/물뿌리개/두더지물뿌리개.png");
+			setObjectImage(nextWater, "Images/상점/두더지.png");
 		}
 
 		enterScene(store);
@@ -190,8 +191,15 @@ void mouseCallbackFarm(ObjectID object, int x, int y, MouseAction action) {
 			enterScene(end);
 			showMessage("농장 대여 날짜가 끝났습니다");
 		}
-		else
+		else if (leftDay != 0)
 			showMessage("하루가 지났습니다");
+	}
+
+	else if (object == goEndButton) {
+		hideObject(goFarmButton1);	
+		showObject(goBackButton);
+		enterScene(end);
+		showMessage("감자 농사를 성공적으로 끝냈습니다!");
 	}
 
 	else if (isPotatoCell(object) == true && soilState[cell_i][cell_j] != 4) {	//빈칸이 아닐 때
@@ -207,6 +215,9 @@ void mouseCallbackFarm(ObjectID object, int x, int y, MouseAction action) {
 			count++;
 
 			money += moleMoneyList[nowPotato[3]];
+			if (money < 0)
+				money = 0;		//두더지 잡았는데 돈이 - 돼버리면 그냥 0원으로 해주기
+			
 			countMole++;
 
 			//옆에 가격 띄워줌
@@ -248,6 +259,7 @@ void mainFarm() {
 	nextDayButton = createObject("Images/버튼/다음날로.png", farm, 1000, 380, false, 2.0f);
 	goStoreButton = createObject("Images/버튼/상점으로.png", farm, 1000, 250, true, 2.0f);
 	goBookButtoon = createObject("Images/버튼/도감보기.png", farm, 1000, 150, true, 2.0f);
+	goEndButton = createObject("Images/버튼/끝내기.png", farm, 20, 20, false, 1.5f);
 
 	textLeftDay = createObject("Images/버튼/Day.png", farm, 10, 620, true, 0.7f);
 	textDay = createObject("Images/버튼/남은대여날짜.png", farm, 820, 635, true, 0.7f);

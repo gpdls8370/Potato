@@ -7,7 +7,7 @@
 SceneID store;
 extern SoundID button, success;
 extern SceneID farm;
-extern ObjectID bookCell1[3], bookCell2[3], bookCell3[2], waterButton;
+extern ObjectID bookCell1[3], bookCell2[3], bookCell3[2], waterButton, goEndButton;
 ObjectID goFarmButton, upgradeButton, plusDayButton;
 ObjectID text1, text2, next, plusDayText;
 ObjectID nowWater, nextWater;
@@ -16,7 +16,6 @@ ObjectID moneyCell[9];	//1~8 8칸
 ObjectID dayPriceCell[9];
 extern void setLeftDay();
 extern int leftDay;
-extern int nextDayPriceList[12];
 
 extern bool moleUnlocked;
 extern bool findPotato[8];
@@ -64,7 +63,7 @@ void setMoney() {
 
 void setDayPrice() {
 
-	getMoneyNum(nextDayPriceList[waterLevel]);	//배열에 자릿수 나눠서 넣기
+	getMoneyNum(upgradeMoney[waterLevel] / 2);	//배열에 자릿수 나눠서 넣기
 
 	for (int i = 1; i < 9; i++) {		//0번은 항상 '원' + 항상 보임
 
@@ -148,29 +147,31 @@ void mouseCallbackStore(ObjectID object, int x, int y, MouseAction action) {
 					potatoMoney[i] = potatoMoneyList[nowPotato[i]];
 				}
 				waterLevel++;
-				setObjectImage(nowWater, "Images/물뿌리개/두더지물뿌리개.png");
+				setObjectImage(nowWater, "Images/상점/두더지.png");
 				setObjectImage(nextWater, "Images/버튼/더이상.png");
+				setObjectImage(waterButton, "Images/물뿌리개/두더지물뿌리개.png");
 				showMessage("두더지 물뿌리개로 강화했습니다!");
 				setDayPrice();
+				showObject(goEndButton);
 			}
 			else {
 				playSound(button);
-				showMessage("더 이상 강화를 할 수 없습니다.");
+				showMessage("더 이상 강화를 할 수 없습니다");
 			}
 		}
 
 		else {
 			playSound(button);
-			showMessage("더 이상 강화를 할 수 없습니다.");
+			showMessage("더 이상 강화를 할 수 없습니다");
 		}
 	}
 
 	else if (object == plusDayButton) {
 
 		//날짜 추가 돈이 충분하면
-		if (money >= nextDayPriceList[waterLevel]) {
+		if (money >= upgradeMoney[waterLevel] / 2) {	//날짜 추가 가격 == upgradeMoney[waterLevel] / 2
 			playSound(success);
-			money -= nextDayPriceList[waterLevel];
+			money -= upgradeMoney[waterLevel] / 2;
 			leftDay += 5;	//5일 추가
 			setMoney();
 			setLeftDay();	//farm씬의 남은 날짜 표기 다시 세팅

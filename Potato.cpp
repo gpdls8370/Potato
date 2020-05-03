@@ -1,4 +1,4 @@
-//화이팅!!
+//git pust 명령어 : git push -f origin master
 //1280x720
 //Potato = main 소스에서는 쓸 함수 선언 + 시스템 변수 선언 + main역할만 함
 //main에서 필요해지는건 extern으로 받아와서 씀 ex)각장면의 main함수들
@@ -40,17 +40,14 @@ int nowPotato[4]
 bool moleUnlocked = false;
 int countMole = 0;
 
-int money = 0;
+int money = 150000000;
 int day = 1;
 int leftDay = 5;		//남은날짜 : 처음은 5일
 float gameTime = 15.0f;
 
-int nextDayPriceList[12]		//날짜 추가 위해서 필요한 돈 == 물뿌리개 강화에 필요한 돈
-= { 300,800,2000,5000,20000,80000,200000,500000,1000000,5000000,10000000,50000000 };
-
 //n일때 다음 물뿌리개로 업그레이드 하기 위해 필요한 돈
-int upgradeMoney[12]
-= { 300,800,2000,5000,20000,80000,200000,500000,1000000,5000000,10000000,50000000 };
+int upgradeMoney[13]
+= { 300,800,2000,5000,15000,30000,100000,200000,500000,1000000,5000000,20000000, 40000000 };
 
 //물뿌리개 이미지 리스트
 const char* waterImageList[14]
@@ -63,7 +60,7 @@ const char* waterStoreImageList[14]
 = { "Images/상점/플라스틱.png","Images/상점/철.png","Images/상점/빛나는철.png","Images/상점/금.png",
 "Images/상점/빛나는금.png" ,"Images/상점/다이아.png" ,"Images/상점/빛나는다이아.png" ,"Images/상점/이리듐.png" ,
 "Images/상점/빛나는이리듐.png" ,"Images/상점/무지개.png" ,"Images/상점/빛나는무지개.png","Images/상점/많이빛나는.png",
-"Images/상점/너무많이빛나는.png" ,"Images/상점/두더지.png" };
+"Images/상점/너무많이빛나는.png" ,"Images/버튼/더이상.png" };
 
 //감자 이미지 리스트
 const char* potatoImageList[8]
@@ -186,7 +183,7 @@ int main() {
 	mainBook3();
 	mainEnd();
 
-	bgmTimer = createTimer(1.0f);
+	bgmTimer = createTimer(0.2f);
 	bgm = createSound("Sounds/타이틀.mp3");
 
 	button = createSound("Sounds/버튼클릭.mp3");
