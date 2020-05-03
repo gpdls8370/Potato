@@ -40,7 +40,7 @@ int nowPotato[4]
 bool moleUnlocked = false;
 int countMole = 0;
 
-int money = 150000000;
+int money = 0;
 int day = 1;
 int leftDay = 5;		//남은날짜 : 처음은 5일
 float gameTime = 15.0f;
