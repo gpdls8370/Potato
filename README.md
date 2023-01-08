@@ -1,8 +1,15 @@
-//프로젝트 실행시 Potato_Installer 오류가 뜨는건 게임 실행에는 전혀 지장없으니 무시하셔도 됩니다! 
+# Potato
+2020년 1학기 기초컴퓨터프로그래밍 : 개인 게임 개발 프로젝트
+
+* 프로젝트 실행시 Potato_Installer 오류가 뜨는건 게임 실행에는 전혀 지장없으니 무시하셔도 됩니다! 
+
+* 방탈 라이브러리를 사용하여 개발한 프로젝트입니다.
+
+###### 방탈 라이브러리 https://bangtal.bosornd.com
 
 # 감자캐기 게임
 
-![title](https://user-images.githubusercontent.com/46310524/211208844-9c2d6630-6563-481c-9b11-837e6be7d24d.png)
+![title](https://user-images.githubusercontent.com/46310524/211210207-8a4a5f1c-398d-4d5e-9205-fd396fd89f88.png)
 
 
 제한된 날짜 동안 감자를 캐서 도감을 완성하는 게임입니다!
@@ -12,9 +19,12 @@
 
 (날짜가 지나기 전에 도감을 채워야합니다)
 
-[농장]
+## 농장
 - 감자캐기 미니게임
 - 상점, 도감, 다음날로 이동
+
+![farm](https://user-images.githubusercontent.com/46310524/211210232-c7f31249-dfd2-4ac5-bb5f-3b0a4f55b6fe.PNG)
+
 
 물뿌리개를 클릭하면 감자캐기 미니게임을 시작할 수 있습니다.
 
@@ -29,9 +39,12 @@
 
 게임 중에도 무한으로 물뿌리개를 눌러 밭을 리셋할 수 있습니다.
 
-[상점]
+## 상점
 - 물뿌리개 업그레이드
 - 대여 날짜 추가
+
+![store](https://user-images.githubusercontent.com/46310524/211210238-2869e6f9-72b1-4230-aa78-bb387428cdee.PNG)
+
 
 돈을 소모하여 물뿌리개를 업그레이드 할 수 있습니다.
 
@@ -41,8 +54,11 @@
 
 오른쪽 위에는 갖고 있는 돈을 보여줍니다.
 
-[도감]
-1~3페이지
+## 도감
+* 1~3페이지
+
+![book](https://user-images.githubusercontent.com/46310524/211210244-04f20ede-7de0-459f-9ccf-84d4a8cce218.PNG)
+
 
 미니게임에서 새로운 종류의 감자를 캐면 해당 도감 부분이 열립니다.
 
