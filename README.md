@@ -1,6 +1,9 @@
 //프로젝트 실행시 Potato_Installer 오류가 뜨는건 게임 실행에는 전혀 지장없으니 무시하셔도 됩니다! 
 
-<감자캐기게임>
+# 감자캐기 게임
+
+![title](https://user-images.githubusercontent.com/46310524/211208844-9c2d6630-6563-481c-9b11-837e6be7d24d.png)
+
 
 제한된 날짜 동안 감자를 캐서 도감을 완성하는 게임입니다!
 
