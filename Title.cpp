@@ -17,7 +17,6 @@ void mouseCallbackTitle(ObjectID object, int x, int y, MouseAction action) {
 		playSound(button);
 		showMessage("열심히 농사를 지어서 감자 도감을 다 채워보자!");
 		enterScene(farm);
-		playSound(bgm, true);
 	}
 
 	else if (object == endButton)
